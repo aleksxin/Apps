@@ -13,7 +13,7 @@ import org.springframework.context.annotation.PropertySource;
 import java.util.HashMap;
 import java.util.Map;
 
-@PropertySource(value="classpath:/alfresc-local.properties}", ignoreResourceNotFound=true)
+@PropertySource(value="classpath:/alfresco-local.properties}", ignoreResourceNotFound=true)
 @SpringBootApplication
 public class MainApplication extends SpringBootServletInitializer {
 
