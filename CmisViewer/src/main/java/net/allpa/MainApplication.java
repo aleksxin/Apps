@@ -1,24 +1,34 @@
 package net.allpa;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import net.allpa.contentconnector.CmisDocumentManager;
 import net.allpa.contentconnector.DocumentsManager;
-
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 
+import java.util.HashMap;
+import java.util.Map;
 
+@PropertySource(value="classpath:/alfresc-local.properties}", ignoreResourceNotFound=true)
 @SpringBootApplication
 public class MainApplication extends SpringBootServletInitializer {
 
 	/**
-	 * @param args
+     * @param args
 	 */
+    @Value("${alfresco.url}")
+    private String alfrescoUrl;
+
+    @Value("${alfresco.defaultuser}")
+    private String defaultUser;
+
+    @Value("${alfresco.defaultpassword}")
+    private String defaultPass;
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		SpringApplication.run(MainApplication.class, args);
@@ -33,9 +43,9 @@ public class MainApplication extends SpringBootServletInitializer {
 	public DocumentsManager documentsManager() {
 		DocumentsManager dm = new CmisDocumentManager();
 		Map<String,String> parameter = new HashMap<String,String>();
-		parameter.put("URL", "http://192.168.1.111:6060/alfresco/api/-default-/public/cmis/versions/1.0/atom");
-		parameter.put("USER", "admin");
-		parameter.put("PASSWORD", "admin");
+		parameter.put("URL", alfrescoUrl);
+		parameter.put("USER", defaultUser);
+		parameter.put("PASSWORD", defaultPass);
 		dm.init(parameter);
 		return dm;
 	

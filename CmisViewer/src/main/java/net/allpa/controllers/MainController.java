@@ -14,9 +14,5 @@ public class MainController {
 	return "list";
 	}
 	
-	@RequestMapping(value={"/login"})
-	public String login(Model model){
 
-	return "login";
-	}
 }

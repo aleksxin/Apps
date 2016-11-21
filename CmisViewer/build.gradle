@@ -21,10 +21,10 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse-wtp'
+
 apply plugin: 'spring-boot'
 apply plugin: 'war'
-apply plugin: 'eclipse'
+apply plugin: 'idea'
 
 
 war {
@@ -44,13 +44,21 @@ configurations {
 }
 
 dependencies {
+	//compile('org.thymeleaf:thymeleaf-spring4:3.0.2.RELEASE')
+	//compile('org.thymeleaf:thymeleaf:3.0.2.RELEASE')
+
 	compile('org.springframework.boot:spring-boot-starter-security')
+
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+			{
+
+		exclude group: 'nz.net.ultraq.thymeleaf', module: 'thymeleaf-layout-dialect'
+	}
 	compile('org.springframework.boot:spring-boot-starter-web')
 
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	compile('net.sourceforge.nekohtml:nekohtml:1.9.22')
+	//compile('net.sourceforge.nekohtml:nekohtml:1.9.22')
 	compile('net.allpa.contentconnector:net-allpa-contentconnector:1.0')
 }
 
